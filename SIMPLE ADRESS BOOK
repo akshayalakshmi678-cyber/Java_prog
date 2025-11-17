@@ -1,0 +1,52 @@
+import java.util.*;
+
+class Contact {
+    String name;
+    String phone;
+
+    Contact(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+}
+
+public class AddressBook {
+    static Map<String, Contact> contacts = new HashMap<>();
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (true) {
+            System.out.println("\n1. Add Contact\n2. Get Contact\n3. Show All\n4. Exit");
+            int choice = sc.nextInt();
+            sc.nextLine();
+            switch (choice) {
+                case 1:
+                    System.out.print("Name: ");
+                    String name = sc.nextLine();
+                    System.out.print("Phone: ");
+                    String phone = sc.nextLine();
+                    contacts.put(name, new Contact(name, phone));
+                    System.out.println("Contact added.");
+                    break;
+                case 2:
+                    System.out.print("Enter name to find: ");
+                    String search = sc.nextLine();
+                    Contact c = contacts.get(search);
+                    if (c != null)
+                        System.out.println("Name: " + c.name + ", Phone: " + c.phone);
+                    else
+                        System.out.println("Contact not found.");
+                    break;
+                case 3:
+                    for (Contact con : contacts.values()) {
+                        System.out.println("Name: " + con.name + ", Phone: " + con.phone);
+                    }
+                    break;
+                case 4:
+                    return;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        }
+    }
+}

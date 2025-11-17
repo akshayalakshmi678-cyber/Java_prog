@@ -1,0 +1,21 @@
+import java.util.*;
+
+public class GuessNumberGame {
+    public static void main(String[] args) {
+        int number = new Random().nextInt(100) + 1;
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Guess the number between 1 and 100:");
+
+        while (true) {
+            int guess = sc.nextInt();
+            if (guess == number) {
+                System.out.println("Correct! You win.");
+                break;
+            } else if (guess < number) {
+                System.out.println("Too low, try again.");
+            } else {
+                System.out.println("Too high, try again.");
+            }
+        }
+    }
+}

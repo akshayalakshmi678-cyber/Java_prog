@@ -1,0 +1,34 @@
+import javax.swing.*;
+import java.awt.event.*;
+
+public class CalculatorGUI {
+    public static void main(String[] args) {
+        JFrame f = new JFrame("Calculator");
+        JTextField tf = new JTextField();
+        tf.setBounds(30,40,200,30);
+        JButton b1 = new JButton("+");
+        b1.setBounds(40,100,50,40);
+        JButton b2 = new JButton("-");
+        b2.setBounds(110,100,50,40);
+        JButton b3 = new JButton("=");
+        b3.setBounds(180,100,50,40);
+
+        f.add(tf); f.add(b1); f.add(b2); f.add(b3);
+        f.setSize(300,200); f.setLayout(null); f.setVisible(true);
+
+        final int[] num = new int[1];
+        b1.addActionListener(e -> {
+            num[0] = Integer.parseInt(tf.getText());
+            tf.setText("");
+        });
+        b2.addActionListener(e -> {
+            num[0] = Integer.parseInt(tf.getText()) * -1;
+            tf.setText("");
+        });
+        b3.addActionListener(e -> {
+            int number = Integer.parseInt(tf.getText());
+            tf.setText(String.valueOf(num[0] + number));
+        });
+        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}
